@@ -1,6 +1,8 @@
 package com.rodrigo.tigerspiketest.repository
 
+import com.rodrigo.tigerspiketest.data.ImageItem
 import com.rodrigo.tigerspiketest.network.FlickrAPI
+import com.rodrigo.tigerspiketest.network.ResponseListener
 import com.rodrigo.tigerspiketest.network.response.PublicPhotosResponse
 import org.junit.Assert
 import org.junit.Before
@@ -14,7 +16,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 @RunWith(MockitoJUnitRunner::class)
-class ImageRepositoryTest {
+class ImageRepositoryImplTest {
 
     @Mock
     lateinit var api: FlickrAPI
@@ -25,13 +27,19 @@ class ImageRepositoryTest {
 
     @Before
     fun setup() {
-        imageRepository = ImageRepository(api)
+        imageRepository = ImageRepositoryImpl(api)
         Mockito.`when`(api.getPublicPhotos()).thenReturn(call)
     }
 
     @Test
     fun shouldCallGetPublicPhotos() {
-        imageRepository.fetchPhotos({}, {})
+        imageRepository.fetchPhotos(object : ResponseListener<List<ImageItem>> {
+            override fun onSuccess(response: List<ImageItem>) {
+            }
+
+            override fun onFailure() {
+            }
+        })
         Mockito.verify(api).getPublicPhotos()
     }
 
@@ -46,7 +54,15 @@ class ImageRepositoryTest {
             )
         }
         var successCalled = false
-        imageRepository.fetchPhotos({ successCalled = true }, {})
+        imageRepository.fetchPhotos(object : ResponseListener<List<ImageItem>> {
+            override fun onSuccess(response: List<ImageItem>) {
+                successCalled = true
+            }
+
+            override fun onFailure() {
+
+            }
+        })
         Assert.assertTrue(successCalled)
     }
 
@@ -61,7 +77,14 @@ class ImageRepositoryTest {
             )
         }
         var failureCalled = false
-        imageRepository.fetchPhotos({}, { failureCalled = true })
+        imageRepository.fetchPhotos(object : ResponseListener<List<ImageItem>> {
+            override fun onSuccess(response: List<ImageItem>) {
+            }
+
+            override fun onFailure() {
+                failureCalled = true
+            }
+        })
         Assert.assertTrue(failureCalled)
     }
 
@@ -75,7 +98,14 @@ class ImageRepositoryTest {
             )
         }
         var failureCalled = false
-        imageRepository.fetchPhotos({}, { failureCalled = true })
+        imageRepository.fetchPhotos(object : ResponseListener<List<ImageItem>> {
+            override fun onSuccess(response: List<ImageItem>) {
+            }
+
+            override fun onFailure() {
+                failureCalled = true
+            }
+        })
         Assert.assertTrue(failureCalled)
     }
 
@@ -89,7 +119,14 @@ class ImageRepositoryTest {
             )
         }
         var failureCalled = false
-        imageRepository.fetchPhotos({}, { failureCalled = true })
+        imageRepository.fetchPhotos(object : ResponseListener<List<ImageItem>> {
+            override fun onSuccess(response: List<ImageItem>) {
+            }
+
+            override fun onFailure() {
+                failureCalled = true
+            }
+        })
         Assert.assertTrue(failureCalled)
     }
 
@@ -103,7 +140,14 @@ class ImageRepositoryTest {
             )
         }
         var failureCalled = false
-        imageRepository.fetchPhotos({}, { failureCalled = true })
+        imageRepository.fetchPhotos(object : ResponseListener<List<ImageItem>> {
+            override fun onSuccess(response: List<ImageItem>) {
+            }
+
+            override fun onFailure() {
+                failureCalled = true
+            }
+        })
         Assert.assertTrue(failureCalled)
     }
 
