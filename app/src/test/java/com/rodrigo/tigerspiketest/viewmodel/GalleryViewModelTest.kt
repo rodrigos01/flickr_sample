@@ -34,12 +34,12 @@ class GalleryViewModelTest {
 
     @Test
     fun shouldHaveImageItems() {
-        val response = ArrayList<ImageItem>()
+        val response = listOf<ImageItem>()
         Mockito.`when`(repository.fetchPhotos(Mockito.any())).then {
             it.getArgument<ResponseListener<List<ImageItem>>>(0).onSuccess(response)
         }
         galleryViewModel.loadImages()
-        assertTrue(galleryViewModel.imageItems.get()?.equals(response) ?: false)
+        assertTrue(galleryViewModel.imageItems.containsAll(response))
     }
 
     @Test

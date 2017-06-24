@@ -1,8 +1,8 @@
 package com.rodrigo.tigerspiketest.viewmodel
 
 import android.arch.lifecycle.ViewModel
+import android.databinding.ObservableArrayList
 import android.databinding.ObservableBoolean
-import android.databinding.ObservableField
 import com.rodrigo.tigerspiketest.data.ImageItem
 import com.rodrigo.tigerspiketest.network.ResponseListener
 import com.rodrigo.tigerspiketest.repository.ImageRepository
@@ -13,7 +13,7 @@ class GalleryViewModel @Inject constructor(val imageRepository: ImageRepository)
     val loading = ObservableBoolean()
     val error = ObservableBoolean()
 
-    val imageItems = ObservableField<List<ImageItem>?>()
+    val imageItems = ObservableArrayList<ImageItem>()
 
     fun loadImages() {
         loading.set(true)
@@ -28,7 +28,7 @@ class GalleryViewModel @Inject constructor(val imageRepository: ImageRepository)
 
         override fun onSuccess(response: List<ImageItem>) {
             loading.set(false)
-            imageItems.set(response)
+            imageItems.addAll(response)
         }
     }
 }

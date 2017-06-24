@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TigerSpikeTest</string>
+    <string name="error_loading_gallery">There was an error loading the image gallery</string>
 </resources>

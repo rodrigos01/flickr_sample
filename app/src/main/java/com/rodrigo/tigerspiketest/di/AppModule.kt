@@ -1,25 +1,19 @@
 package com.rodrigo.tigerspiketest.di
 
-import android.app.Application
-import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.rodrigo.tigerspiketest.network.FlickrAPI
+import com.rodrigo.tigerspiketest.repository.ImageRepository
+import com.rodrigo.tigerspiketest.repository.ImageRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 
-@Module
-class AppModule(private val application: Application) {
-    @Provides
-    @Singleton
-    fun provideApplicationContext(): Context {
-        return application
-    }
+@Module(includes = arrayOf(ViewModelModule::class))
+class AppModule {
 
     @Provides
     fun providesOkHttpClient(): OkHttpClient {
@@ -44,5 +38,10 @@ class AppModule(private val application: Application) {
                 .client(okHttpClient)
                 .build()
                 .create(FlickrAPI::class.java)
+    }
+
+    @Provides
+    fun providesImageRepository(api: FlickrAPI): ImageRepository {
+        return ImageRepositoryImpl(api)
     }
 }
