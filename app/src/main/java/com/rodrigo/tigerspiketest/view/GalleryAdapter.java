@@ -4,6 +4,7 @@ import android.databinding.ObservableList;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.rodrigo.tigerspiketest.data.ImageItem;
@@ -12,10 +13,15 @@ import com.rodrigo.tigerspiketest.databinding.ImageItemBinding;
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHolder> {
 
     private ObservableList<ImageItem> items;
+    private OnImageClickedListener onImageClickedListener;
 
     public GalleryAdapter(@NonNull ObservableList<ImageItem> items) {
         this.items = items;
         this.items.addOnListChangedCallback(onListChangedCallback);
+    }
+
+    public void setOnImageClickedListener(OnImageClickedListener onImageClickedListener) {
+        this.onImageClickedListener = onImageClickedListener;
     }
 
     @Override
@@ -27,11 +33,24 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        ImageItem item = items.get(position);
+    public void onBindViewHolder(final ViewHolder holder, int position) {
+        final ImageItem item = items.get(position);
         if (item.getMedia() != null) {
             String url = item.getMedia().getMedium();
             holder.binding.setUrl(url);
+        }
+
+        holder.binding.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onImageClick(item);
+            }
+        });
+    }
+
+    private void onImageClick(ImageItem item) {
+        if (onImageClickedListener != null) {
+            onImageClickedListener.onImageClicked(item);
         }
     }
 
@@ -76,5 +95,9 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
             super(binding.getRoot());
             this.binding = binding;
         }
+    }
+
+    interface OnImageClickedListener {
+        void onImageClicked(ImageItem item);
     }
 }
