@@ -70,6 +70,7 @@ public class GalleryFragment extends LifecycleFragment {
             imageDetailFragment.setArguments(args);
 
             getActivity().getSupportFragmentManager().beginTransaction()
+                    .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
                     .replace(R.id.fragment_container, imageDetailFragment)
                     .addToBackStack("details")
                     .commit();

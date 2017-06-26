@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ImageDetailsText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/invertText</item>
+    </style>
+
 </resources>

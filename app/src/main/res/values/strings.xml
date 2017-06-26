@@ -4,7 +4,4 @@
 
     <string name="published_label">Published on %1$s</string>
     <string name="taken_label">Photo taken on %1$s</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

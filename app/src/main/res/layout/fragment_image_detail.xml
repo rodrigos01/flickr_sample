@@ -4,6 +4,7 @@
 
     <data>
 
+        <import type="com.rodrigo.tigerspiketest.R" />
         <variable
             name="viewModel"
             type="com.rodrigo.tigerspiketest.viewmodel.ImageDetailViewModel" />
@@ -20,20 +21,65 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:imageUrl="@{viewModel.imageUrl}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.496"
+                app:thumbnail="@{viewModel.placeholder}"
+                tools:background="@color/colorAccent"
+                tools:layout_height="450dp" />
+
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
-                android:layout_marginTop="0dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitXY"
-                app:imageUrl="@{viewModel.imageUrl}"
+                android:background="@drawable/text_protection"
+                android:padding="16dp"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:thumbnail="@{viewModel.placeholder}" />
+                app:layout_constraintRight_toRightOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/ImageDetailsText"
+                    android:text="@{viewModel.title}"
+                    tools:text="Some nice pic" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/ImageDetailsText"
+                    android:text="@{viewModel.author}"
+                    tools:text="John Doe" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/ImageDetailsText"
+                    app:textResId="@{R.string.published_label}"
+                    app:textArgs="@{viewModel.datePublished}"
+                    tools:text="Photo published on June 27, 2017" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/ImageDetailsText"
+                    app:textResId="@{R.string.taken_label}"
+                    app:textArgs="@{viewModel.dateTaken}"
+                    tools:text="Photo taken on June 27, 2017" />
+            </LinearLayout>
 
         </android.support.constraint.ConstraintLayout>
 
