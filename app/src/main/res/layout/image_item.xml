@@ -9,9 +9,15 @@
             type="String" />
     </data>
 
-    <com.rodrigo.tigerspiketest.view.widget.SquareImageView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        app:imageUrl="@{url}" />
+        android:layout_height="wrap_content">
+
+        <com.rodrigo.tigerspiketest.view.widget.SquareImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{url}" />
+    </FrameLayout>
 </layout>
