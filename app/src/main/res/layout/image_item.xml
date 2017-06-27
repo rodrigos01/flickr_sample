@@ -7,6 +7,10 @@
         <variable
             name="url"
             type="String" />
+
+        <variable
+            name="link"
+            type="String" />
     </data>
 
     <FrameLayout
@@ -18,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
+            android:transitionName="@{link}"
             app:imageUrl="@{url}" />
     </FrameLayout>
 </layout>

@@ -15,10 +15,9 @@ class GalleryViewModel @Inject constructor(val imageRepository: ImageRepository)
 
     val imageItems = ObservableArrayList<ImageItem>()
 
+    var initialized = false
+
     fun loadImages() {
-        if (!imageItems.isEmpty()) {
-            return
-        }
         loading.set(true)
         imageRepository.fetchPhotos(listener)
     }

@@ -42,13 +42,15 @@ data class ImageItem(
         return 0
     }
 
-    val CREATOR: Parcelable.Creator<ImageItem> = object : Parcelable.Creator<ImageItem> {
-        override fun createFromParcel(source: Parcel): ImageItem {
-            return ImageItem(source)
-        }
+    companion object {
+        @JvmField val CREATOR: Parcelable.Creator<ImageItem> = object : Parcelable.Creator<ImageItem> {
+            override fun createFromParcel(source: Parcel): ImageItem {
+                return ImageItem(source)
+            }
 
-        override fun newArray(size: Int): Array<ImageItem?> {
-            return arrayOfNulls(size)
+            override fun newArray(size: Int): Array<ImageItem?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 

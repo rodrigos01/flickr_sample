@@ -39,18 +39,19 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
             String url = item.getMedia().getMedium();
             holder.binding.setUrl(url);
         }
+        holder.binding.setLink(item.getLink());
 
         holder.binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onImageClick(item);
+                onImageClick(holder.binding.image, item);
             }
         });
     }
 
-    private void onImageClick(ImageItem item) {
+    private void onImageClick(View view, ImageItem item) {
         if (onImageClickedListener != null) {
-            onImageClickedListener.onImageClicked(item);
+            onImageClickedListener.onImageClicked(view, item);
         }
     }
 
@@ -98,6 +99,6 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
     }
 
     interface OnImageClickedListener {
-        void onImageClicked(ImageItem item);
+        void onImageClicked(View view, ImageItem item);
     }
 }

@@ -8,13 +8,17 @@
         <variable
             name="viewModel"
             type="com.rodrigo.tigerspiketest.viewmodel.ImageDetailViewModel" />
+
+        <variable
+            name="thumbnailListener"
+            type="com.rodrigo.tigerspiketest.view.ImageDetailActivity.ThumbnailRequestListener" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/black"
-        tools:context="com.rodrigo.tigerspiketest.view.ImageDetailFragment">
+        tools:context="com.rodrigo.tigerspiketest.view.ImageDetailActivity">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -23,10 +27,11 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitXY"
+                android:layout_height="0dp"
+                android:scaleType="fitCenter"
+                android:transitionName="@{viewModel.link}"
                 app:imageUrl="@{viewModel.imageUrl}"
+                app:thumbnailListener="@{thumbnailListener}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
