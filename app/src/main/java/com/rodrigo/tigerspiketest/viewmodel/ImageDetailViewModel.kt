@@ -22,11 +22,14 @@ class ImageDetailViewModel @Inject constructor() : ViewModel() {
         get() = imageItem?.link
 
     val dateTaken
-        get() = imageItem?.dateTaken?.format(java.text.DateFormat.LONG, java.text.DateFormat.LONG)
+        get() = imageItem?.dateTaken?.format(java.text.DateFormat.SHORT, java.text.DateFormat.SHORT)
 
     val datePublished
-        get() = imageItem?.dateTaken?.format(java.text.DateFormat.LONG, java.text.DateFormat.LONG)
+        get() = imageItem?.dateTaken?.format(java.text.DateFormat.SHORT, java.text.DateFormat.SHORT)
 
     val author
-        get() = imageItem?.author
+        get() = imageItem?.author?.let {
+            val matcher = java.util.regex.Pattern.compile("\\(\"(.*)\"\\)").matcher(it)
+            return@let if (matcher.find()) matcher.group(1) else null
+        }
 }

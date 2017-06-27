@@ -42,49 +42,58 @@
                 tools:background="@color/colorAccent"
                 tools:layout_height="450dp" />
 
-            <LinearLayout
-                android:layout_width="0dp"
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
                 android:background="@drawable/text_protection"
-                android:padding="16dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent">
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <TextView
+                    android:id="@+id/author"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@{viewModel.author}"
                     android:textAppearance="@style/ImageDetailsText"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="John Doe"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/description" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:textAppearance="@style/ImageDetailsText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/author"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@{viewModel.datePublished}"
+                    tools:text="27/07/2017 15:43" />
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:text="@{viewModel.title}"
+                    android:textAppearance="@style/ImageDetailsText"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/date"
+                    app:layout_constraintStart_toStartOf="@id/author"
                     tools:text="Some nice pic" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/ImageDetailsText"
-                    android:text="@{viewModel.author}"
-                    tools:text="John Doe" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/ImageDetailsText"
-                    app:textResId="@{R.string.published_label}"
-                    app:textArgs="@{viewModel.datePublished}"
-                    tools:text="Photo published on June 27, 2017" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/ImageDetailsText"
-                    app:textResId="@{R.string.taken_label}"
-                    app:textArgs="@{viewModel.dateTaken}"
-                    tools:text="Photo taken on June 27, 2017" />
-            </LinearLayout>
+            </android.support.constraint.ConstraintLayout>
 
         </android.support.constraint.ConstraintLayout>
 

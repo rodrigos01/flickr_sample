@@ -1,7 +1,4 @@
 <resources>
     <string name="app_name">TigerSpikeTest</string>
     <string name="error_loading_gallery">There was an error loading the image gallery</string>
-
-    <string name="published_label">Published on %1$s</string>
-    <string name="taken_label">Photo taken on %1$s</string>
 </resources>
