@@ -1,11 +1,12 @@
 package com.rodrigo.tigerspiketest.view;
 
 import android.app.ActivityOptions;
-import android.arch.lifecycle.LifecycleActivity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 
@@ -18,7 +19,7 @@ import com.rodrigo.tigerspiketest.viewmodel.util.ViewModelFactory;
 
 import javax.inject.Inject;
 
-public class GalleryActivity extends LifecycleActivity {
+public class GalleryActivity extends AppCompatActivity {
 
     @Inject
     public ViewModelFactory viewModelFactory;
@@ -32,6 +33,12 @@ public class GalleryActivity extends LifecycleActivity {
 
         ActivityGalleryBinding binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_gallery);
+
+        setSupportActionBar(binding.toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
 
         GalleryViewModel galleryViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(GalleryViewModel.class);

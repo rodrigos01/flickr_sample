@@ -20,9 +20,7 @@ class GalleryViewModel @Inject constructor(val imageRepository: ImageRepository)
     var searchQuery: String? = null
         set(value) {
             field = value
-            if (!(value?.isEmpty() ?: false)) {
-                loadImages()
-            }
+            loadImages()
         }
 
     fun loadImages() {

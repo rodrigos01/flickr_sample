@@ -19,30 +19,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="true"
-            android:focusableInTouchMode="true"
-            app:elevation="0dp">
+            android:focusableInTouchMode="true">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_scrollFlags="scroll|enterAlways" />
+                app:layout_scrollFlags="scroll|enterAlways">
 
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp">
-
-                <EditText
-                    android:id="@+id/search_place"
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/search_images_by_tag"
-                    android:maxLines="1"
-                    android:text="@={viewModel.searchQuery}" />
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp">
+
+                    <EditText
+                        android:id="@+id/search_place"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/search_images_by_tag"
+                        android:maxLines="1"
+                        android:text="@={viewModel.searchQuery}" />
+                </android.support.design.widget.TextInputLayout>
+            </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.AppBarLayout>
 
@@ -56,10 +56,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/error_loading_gallery"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.32999998"
                 app:visible="@{viewModel.error}"
                 tools:layout_editor_absoluteX="55dp" />
@@ -67,10 +67,10 @@
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.32999998"
                 app:visible="@{viewModel.loading}"
                 tools:layout_editor_absoluteX="168dp" />
