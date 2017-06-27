@@ -83,8 +83,8 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
         }
 
         @Override
-        public void onItemRangeRemoved(ObservableList<ImageItem> imageItems, int i, int i1) {
-
+        public void onItemRangeRemoved(ObservableList<ImageItem> imageItems, int positionStart, int itemCount) {
+            notifyItemRangeRemoved(positionStart, itemCount);
         }
     };
 

@@ -17,9 +17,17 @@ class GalleryViewModel @Inject constructor(val imageRepository: ImageRepository)
 
     var initialized = false
 
+    var searchQuery: String? = null
+        set(value) {
+            field = value
+            if (!(value?.isEmpty() ?: false)) {
+                loadImages()
+            }
+        }
+
     fun loadImages() {
         loading.set(true)
-        imageRepository.fetchPhotos(listener)
+        imageRepository.fetchPhotos(searchQuery, listener)
     }
 
     val listener = object : ResponseListener<List<ImageItem>> {
@@ -30,6 +38,7 @@ class GalleryViewModel @Inject constructor(val imageRepository: ImageRepository)
 
         override fun onSuccess(response: List<ImageItem>) {
             loading.set(false)
+            imageItems.clear()
             imageItems.addAll(response)
         }
     }

@@ -35,8 +35,8 @@ class GalleryViewModelTest {
     @Test
     fun shouldHaveImageItems() {
         val response = listOf<ImageItem>()
-        Mockito.`when`(repository.fetchPhotos(Mockito.any())).then {
-            it.getArgument<ResponseListener<List<ImageItem>>>(0).onSuccess(response)
+        whenLoadImages { responseListener ->
+            responseListener.onSuccess(response)
         }
         galleryViewModel.loadImages()
         assertTrue(galleryViewModel.imageItems.containsAll(response))
@@ -45,8 +45,8 @@ class GalleryViewModelTest {
     @Test
     fun shouldFinishLoadingOnSuccess() {
         val response = ArrayList<ImageItem>()
-        Mockito.`when`(repository.fetchPhotos(Mockito.any())).then {
-            it.getArgument<ResponseListener<List<ImageItem>>>(0).onSuccess(response)
+        whenLoadImages { responseListener ->
+            responseListener.onSuccess(response)
         }
         galleryViewModel.loadImages()
         assertFalse(galleryViewModel.loading.get())
@@ -54,8 +54,8 @@ class GalleryViewModelTest {
 
     @Test
     fun shouldHaveError() {
-        Mockito.`when`(repository.fetchPhotos(Mockito.any())).then {
-            it.getArgument<ResponseListener<List<ImageItem>>>(0).onFailure()
+        whenLoadImages { responseListener ->
+            responseListener.onFailure()
         }
         galleryViewModel.loadImages()
         assertTrue(galleryViewModel.error.get())
@@ -63,11 +63,23 @@ class GalleryViewModelTest {
 
     @Test
     fun shouldFinishLoadingOnFailure() {
-        Mockito.`when`(repository.fetchPhotos(Mockito.any())).then {
-            it.getArgument<ResponseListener<List<ImageItem>>>(0).onFailure()
+        whenLoadImages { responseListener ->
+            responseListener.onFailure()
         }
         galleryViewModel.loadImages()
         assertFalse(galleryViewModel.loading.get())
+    }
+
+    @Test
+    fun shouldSearchByTag() {
+        galleryViewModel.searchQuery = "dogs"
+        Mockito.verify(repository).fetchPhotos(Mockito.eq("dogs"), Mockito.any())
+    }
+
+    private inline fun whenLoadImages(crossinline body: (ResponseListener<List<ImageItem>>) -> Unit) {
+        Mockito.`when`(repository.fetchPhotos(Mockito.eq(null), Mockito.any())).then {
+            body(it.getArgument<ResponseListener<List<ImageItem>>>(1))
+        }
     }
 
 }
