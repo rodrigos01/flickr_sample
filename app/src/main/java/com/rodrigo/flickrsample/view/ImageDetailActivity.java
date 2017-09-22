@@ -1,9 +1,9 @@
 package com.rodrigo.flickrsample.view;
 
-import android.arch.lifecycle.LifecycleActivity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
@@ -17,7 +17,7 @@ import com.rodrigo.flickrsample.viewmodel.util.ViewModelFactory;
 
 import javax.inject.Inject;
 
-public class ImageDetailActivity extends LifecycleActivity {
+public class ImageDetailActivity extends AppCompatActivity {
 
     @Inject
     public ViewModelFactory viewModelFactory;
