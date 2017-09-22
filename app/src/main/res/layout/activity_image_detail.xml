@@ -4,21 +4,21 @@
 
     <data>
 
-        <import type="com.rodrigo.tigerspiketest.R" />
+        <import type="com.rodrigo.flickrsample.R" />
         <variable
             name="viewModel"
-            type="com.rodrigo.tigerspiketest.viewmodel.ImageDetailViewModel" />
+            type="com.rodrigo.flickrsample.viewmodel.ImageDetailViewModel" />
 
         <variable
             name="thumbnailListener"
-            type="com.rodrigo.tigerspiketest.view.ImageDetailActivity.ThumbnailRequestListener" />
+            type="com.rodrigo.flickrsample.view.ImageDetailActivity.ThumbnailRequestListener" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/black"
-        tools:context="com.rodrigo.tigerspiketest.view.ImageDetailActivity">
+        tools:context="com.rodrigo.flickrsample.view.ImageDetailActivity">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"

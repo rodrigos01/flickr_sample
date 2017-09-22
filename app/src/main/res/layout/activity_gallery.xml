@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.rodrigo.tigerspiketest.view.GalleryActivity">
+    tools:context="com.rodrigo.flickrsample.view.GalleryActivity">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.rodrigo.tigerspiketest.viewmodel.GalleryViewModel" />
+            type="com.rodrigo.flickrsample.viewmodel.GalleryViewModel" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout
